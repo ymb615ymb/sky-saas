@@ -1,2 +1,48 @@
-info:
-  profile: dev
+#Redis cache 过期时间设置
+redis:
+  cache:
+    expiration: 3600
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.15.34.239:3306/sky_user?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: root
+    password: 123456
+    #验证连接的有效性
+    test-while-idle: true
+    #获取连接时候验证，会影响性能
+    test-on-borrow: true
+    validation-query: SELECT 1 FROM DUAL
+    #空闲连接回收的时间间隔，与test-while-idle一起使用，设置5分钟
+    time-between-eviction-runs-millis: 300000
+    #连接池空闲连接的有效时间 ，设置30分钟
+    min-evictable-idle-time-millis: 1800000
+    secondary: initial-size: 5
+    #指定连接池中最大的活跃连接数.
+    max-active: 50
+    #指定连接池等待连接返回的最大等待时间，毫秒单位.
+    max-wait: 60000 #指定必须保持连接的最小值
+    min-idle: 5
+
+# mybatis-plus 配置
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.sky.saas.user.provider.entity
+  global-config:
+    # 主键类型 0：数据库ID自增，1：用户输入ID，2：全局唯一ID(数字类型唯一ID) 3：全局唯一ID UUID
+    id-type: 0
+    # 字段策略 0：忽略判断 1：非 NULL判断 2 非空判断
+    field-strategy: 1
+    # 驼峰下划线转换
+    db-column-underline: true
+    # 刷新mapper 调试神器
+    refresh-mapper: true
+
+
+
+
+
+
+
+
